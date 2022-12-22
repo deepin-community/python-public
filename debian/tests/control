@@ -1,0 +1,7 @@
+Tests: import.sh
+Depends:
+ python3-public,
+
+Tests: atpublic.py
+Depends:
+ python3-public,

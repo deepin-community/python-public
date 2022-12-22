@@ -1,0 +1,37 @@
+python-public (2.3-1) unstable; urgency=medium
+
+  * QA upload.
+
+  [ Ondřej Nový ]
+  * d/control: Set Vcs-* to salsa.debian.org
+  * d/copyright: Use https protocol in Format field
+  * d/tests: Use AUTOPKGTEST_TMP instead of ADTTMP
+  * d/control: Remove ancient X-Python3-Version field
+  * Convert git repository from git-dpm to gbp layout
+  * Use debhelper-compat instead of debian/compat.
+  * d/control: Update Maintainer field with new Debian Python Team
+    contact address.
+  * d/control: Update Vcs-* fields with new Debian Python Team Salsa
+    layout.
+
+  [ Boyuan Yang ]
+  * New upstream version 2.3.
+  * Orphan the package. (See: #970146)
+  * Bump Standards-Version to 4.6.0, debhelper compat v13.
+  * debian/: remove py2-related things.
+  * debian/copyright: Update information.
+  * debian/control: Add python3-pytest into build-dependency.
+
+ -- Boyuan Yang <byang@debian.org>  Thu, 28 Oct 2021 17:46:48 -0400
+
+python-public (0.5-1) unstable; urgency=medium
+
+  * New upstream release.
+
+ -- Barry Warsaw <barry@debian.org>  Thu, 22 Dec 2016 16:33:00 -0500
+
+python-public (0.4-1) unstable; urgency=medium
+
+  * Initial release. (Closes: #824659)
+
+ -- Barry Warsaw <barry@debian.org>  Mon, 12 Dec 2016 19:44:02 -0500

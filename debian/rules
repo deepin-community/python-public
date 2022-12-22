@@ -1,0 +1,18 @@
+#!/usr/bin/make -f
+
+export PYBUILD_NAME=public
+#export PYBUILD_VERBOSE=1
+#export DH_VERBOSE=1
+
+%:
+	dh $@ --with sphinxdoc --buildsystem=pybuild
+
+override_dh_installchangelogs:
+	dh_installchangelogs -k docs/NEWS.rst
+
+override_dh_installdocs:
+	python3 setup.py build_sphinx
+	dh_installdocs build/sphinx/html
+
+execute_after_dh_python3:
+	rm -f $(CURDIR)/debian/*/usr/lib/python3/dist-packages/.coverage
