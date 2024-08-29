@@ -1,3 +1,86 @@
+python-public (4.1.0-1) unstable; urgency=medium
+
+  [ Andreas Tille ]
+  * New upstream version 4.0
+  * New upstream version 4.0
+
+  [ Josenilson Ferreira da Silva ]
+  * New upstream version 4.1.0
+  * debian/control: Added "Build-Depends" by usptream in the new version
+  * debian/watch: New gitlab watch regex
+
+ -- Josenilson Ferreira da Silva <nilsonfsilva@hotmail.com>  Wed, 17 Apr 2024 23:09:08 -0300
+
+python-public (4.0-2) unstable; urgency=medium
+
+  * debian/copyright: Updated packaging copyright
+
+ -- Josenilson Ferreira da Silva <nilsonfsilva@hotmail.com>  Tue, 10 Oct 2023 05:37:40 -0300
+
+python-public (4.0-1) unstable; urgency=medium
+
+  * New upstream version 4.0 (closes: #970146)
+  * d/clean: Removed build artifacts pack
+  * d/docs: Removed file
+  * d/control:
+     - Added pybuild-plugin-pyproject and python3-pdm-backend to Build-Depends
+     - Added python-public-doc binary package
+     - Bumped Standards-Version to 4.6.2
+     - Maintainer is now Debian Python Team and added myself to Uploaders
+     - Reformatted the code with wrap-and-sort -ast
+     - Removed python3-setuptools from Build-Depends field
+     - Removed unnecessary subroutine for "all" architecture
+     - Updated long description
+     - Updated Homepage field to the new location (gitlab.com)
+  * d/patches:
+     - Added 001.fixed-module-path-and-version.patch fix module path and version
+     - Removed 0001-Add-support-for-new-Sybil.patch, fixed in new version
+  * d/python-public-doc*: Added file to build documentation sphinx
+  * d/README.source: Reported of the particularities of the packages
+  * d/rules:
+     - Adjusted for building the sphinx documentation
+     - Disabled tests for now as they are crashing in build
+  * d/upstream/signing-key.asc: Drop, upstream releases are not signed anymore
+  * d/watch:
+     - Updated watchfile to use gitlab.com
+     - Updated to version 4
+     - Removed pgpsigurlmangle option in watch file
+
+ -- Josenilson Ferreira da Silva <nilsonfsilva@hotmail.com>  Sun, 01 Oct 2023 22:58:30 -0300
+
+python-public (2.3-4) unstable; urgency=medium
+
+  * QA upload.
+
+  [ Debian Janitor ]
+  * Use secure URI in Homepage field.
+  * Set upstream metadata fields: Bug-Database, Bug-Submit, Repository,
+    Repository-Browse.
+  * QA Upload.
+    Orphan package - see bug 970146.
+
+ -- Jelmer Vernooĳ <jelmer@debian.org>  Sun, 16 Oct 2022 21:51:01 +0100
+
+python-public (2.3-3) unstable; urgency=medium
+
+  * QA upload.
+  * Add support for new python3-sybil (Closes: #1017854).
+
+ -- Andrey Rahmatullin <wrar@debian.org>  Sun, 18 Sep 2022 21:32:19 +0500
+
+python-public (2.3-2) unstable; urgency=medium
+
+  * Team upload.
+  * Bump Standards-Version to 4.6.1, no changes needed.
+  * Drop Suggests on python-public-doc, which does no exist.
+  * Use dh-sequence-sphinxdoc for a more declarative build.
+  * Set Rules-Requires-Root:no.
+  * Move sure to always remove the .coverage file.  Closes: #1009337
+  * Update copyright.
+  * Re-export the upstream signing-key without extra signatures.
+
+ -- Mattia Rizzolo <mattia@debian.org>  Sat, 30 Jul 2022 09:59:34 +0200
+
 python-public (2.3-1) unstable; urgency=medium
 
   * QA upload.

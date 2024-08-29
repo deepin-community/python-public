@@ -7,7 +7,9 @@ Copyright: 2016-2021 Barry Warsaw <barry@python.org>
 License: Apache-2.0
 
 Files: debian/*
-Copyright: Copyright 2016 Barry A. Warsaw <barry@debian.org>
+Copyright: 2016 Barry A. Warsaw <barry@debian.org>
+           2022 Mattia Rizzolo <mattia@debian.org>
+           2023 Josenilson Ferreira da Silva <nilsonfsilva@hotmail.com>
 License: Apache-2.0
 
 License: Apache-2.0

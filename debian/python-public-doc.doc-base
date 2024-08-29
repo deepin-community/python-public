@@ -1,0 +1,10 @@
+Document:public
+Title: Debian public Manual
+Section: Programming/Python
+Author: Barry Warsaw
+Abstract: This is the documentation of the Python library public
+ that is also available online at http https://public.readthedocs.io/en/latest/
+
+Format: HTML
+Index: /usr/share/doc/python-public-doc/html/index.html
+Files: /usr/share/doc/python-public-doc/html/*.html

@@ -16,7 +16,7 @@ provides a top-level module named ``public``, the PyPI package is called
 Requirements
 ============
 
-``public`` requires Python 3.6 or newer.
+``public`` requires Python 3.8 or newer.
 
 
 Documentation
@@ -41,19 +41,19 @@ You can install it with `pip`::
 
 **Do not install "public"; that is a different package!**
 
-You can grab the latest development copy of the code using git.  The master
+You can grab the latest development copy of the code using git.  The main
 repository is hosted on GitLab.  If you have git installed, you can grab
 your own branch of the code like this::
 
     $ git clone https://gitlab.com/warsaw/public.git
 
-You may contact the author via barry@python.org.
+You can contact the author via barry@python.org.
 
 
 Copyright
 =========
 
-Copyright (C) 2016-2021 Barry A. Warsaw
+Copyright (C) 2016-2024 Barry A. Warsaw
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

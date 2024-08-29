@@ -1,3 +1,3 @@
-version=3
-opts=uversionmangle=s/(rc|a|b|c)/~$1/,pgpsigurlmangle=s/$/.asc/ \
-https://pypi.debian.net/atpublic/atpublic-(.+)\.(?:zip|tgz|tbz|txz|(?:tar\.(?:gz|bz2|xz)))
+version=4
+opts="searchmode=plain, uversionmangle=s/\.(\d+\.\d+.\d+)//" \
+https://gitlab.com/warsaw/public/tags?sort=updated_desc -/archive/(\d+.\d+.\d+)/public-(\d+.\d+.\d+).tar.gz

@@ -1,32 +1,54 @@
 Source: python-public
 Maintainer: Debian Python Team <team+python@tracker.debian.org>
-Homepage: http://public.readthedocs.io/en/latest/
+Uploaders: Josenilson Ferreira da Silva <nilsonfsilva@hotmail.com>
+Homepage: https://gitlab.com/warsaw/public
 Section: python
 Priority: optional
-Build-Depends:
- debhelper-compat (= 13),
- dh-sequence-python3,
- python3-all,
- python3-pkg-resources,
- python3-pytest <!nocheck>,
- python3-pytest-cov <!nocheck>,
- python3-setuptools,
- python3-sphinx,
- python3-sphinx-autodoc-typehints <!nocheck>,
- python3-sybil <!nocheck>,
-Standards-Version: 4.6.0
+Build-Depends: debhelper-compat (= 13),
+               dh-sequence-python3,
+               dh-sequence-sphinxdoc,
+               furo,
+               pybuild-plugin-pyproject,
+               python3-all,
+               python3-hatchling,
+               python3-pdm-backend,
+               python3-pkg-resources,
+               python3-pytest <!nocheck>,
+               python3-pytest-cov <!nocheck>,
+               python3-sphinx,
+               python3-sphinx-autodoc-typehints <!nocheck>,
+               python3-sybil <!nocheck>
+Standards-Version: 4.6.2
+Rules-Requires-Root: no
 Vcs-Git: https://salsa.debian.org/python-team/packages/python-public.git
 Vcs-Browser: https://salsa.debian.org/python-team/packages/python-public
 
 Package: python3-public
 Architecture: all
-Built-Using:
- ${sphinxdoc:Built-Using},
-Depends:
- ${misc:Depends},
- ${python3:Depends},
- ${sphinxdoc:Depends},
-Suggests:
- python-public-doc,
+Depends: ${misc:Depends},
+         ${python3:Depends},
+         ${sphinxdoc:Depends}
+Suggests: python-public-doc
 Description: @public decorator for adding names to __all__
- Never add an explicit __all__ to your modules again!
+ His module is a library that provides two simple decorators called @public
+ and @private to document the publicity of names in your Python module. These
+ decorators are used to control what will be imported when someone uses the
+ from <module> import * statement. It's usually good practice to use a special
+ attribute called __all__ to explicitly list the public names you want exposed
+ in your module.
+
+Package: python-public-doc
+Architecture: all
+Multi-Arch: foreign
+Section: doc
+Depends: ${misc:Depends},
+         ${sphinxdoc:Depends}
+Description: @public decorator for adding names to _all_(common documentation)
+ His module is a library that provides two simple decorators called @public
+ and @private to document the publicity of names in your Python module. These
+ decorators are used to control what will be imported when someone uses the
+ from <module> import * statement. It's usually good practice to use a special
+ attribute called __all__ to explicitly list the public names you want exposed
+ in your module.
+ .
+ This package installs the common documentation package.

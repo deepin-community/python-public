@@ -1,6 +1,6 @@
-======================
- @public and @private
-======================
+==========================
+Using @public and @private
+==========================
 
 This library provies two very simple decorators that document the *publicness*
 of the names in your module.  They keep your module's ``__all__`` in sync so
@@ -30,8 +30,8 @@ can print a module's ``__all__`` and get an explicit declaration of its public
 API.
 
 
-The problem
-===========
+The problem with __all__
+========================
 
 ``__all__`` has two problems.
 
@@ -87,6 +87,10 @@ Note that you do not need to initialize ``__all__`` in the module, since
 ``public`` will do it for you.  Of course, if your module *already* has an
 ``__all__``, it will add any new names to the existing list.
 
+
+Function call form
+==================
+
 The requirements to use the ``@public`` decorator are simple: the decorated
 thing must have a ``__name__`` attribute.  Since you'll overwhelmingly use it
 to decorate functions and classes, this will always be the case.  If the
@@ -101,15 +105,19 @@ constants don't have a ``__name__`` and Python's syntax doesn't allow you to
 decorate such constructs.
 
 To solve this use case, ``public`` is also a callable function accepting
-keyword arguments.  An example makes this obvious::
+keyword arguments.  An example makes this obvious.  We'll start by resetting
+the ``__all__``.
 
+    >>> reset()
     >>> public(SEVEN=7)
+    7
     >>> public(a_bar=Bar())
+    <...Bar object ...>
 
 The module's ``__all__`` now contains both of the keys::
 
     >>> print(__all__)
-    ['foo', 'Bar', 'SEVEN', 'a_bar']
+    ['SEVEN', 'a_bar']
 
 and as should be obvious, the module contains name bindings for these
 constants::
@@ -122,13 +130,36 @@ constants::
 Multiple keyword arguments are allowed::
 
     >>> public(ONE=1, TWO=2)
+    (1, 2)
     >>> print(__all__)
-    ['foo', 'Bar', 'SEVEN', 'a_bar', 'ONE', 'TWO']
+    ['SEVEN', 'a_bar', 'ONE', 'TWO']
 
     >>> print(ONE)
     1
     >>> print(TWO)
     2
+
+You'll notice that the functional form of ``public()`` returns the values in
+its keyword arguments in order.  This is to help with a use case where some
+linters complain bcause they can't see that ``public()`` binds the names in
+the global namespace.  In the above example they might report erroneously that
+``ONE`` and ``TWO`` aren't defined.  To work around this, when ``public()`` is
+used in its functional form, it will return the values in the order they are
+seen [#]_ and you can simply assign them to explicit local variable names.
+
+    >>> a, b, c = public(a=3, b=2, c=1)
+    >>> print(__all__)
+    ['SEVEN', 'a_bar', 'ONE', 'TWO', 'a', 'b', 'c']
+    >>> print(a, b, c)
+    3 2 1
+
+It also works if you bind only a single value.
+
+    >>> d = public(d=9)
+    >>> print(__all__)
+    ['SEVEN', 'a_bar', 'ONE', 'TWO', 'a', 'b', 'c', 'd']
+    >>> print(d)
+    9
 
 
 @private
@@ -137,8 +168,10 @@ Multiple keyword arguments are allowed::
 You might also want to be explicit about your private, i.e. non-public names.
 This library also provides an ``@private`` decorator for this purpose.  While
 it mostly serves for documentation purposes, this decorator also ensures that
-the decorated object's name does *not* appear in the ``__all__``::
+the decorated object's name does *not* appear in the ``__all__``.  As above,
+we'll start by resetting ``__all__``::
 
+    >>> reset()
     >>> from public import private
 
     >>> @private
@@ -146,7 +179,7 @@ the decorated object's name does *not* appear in the ``__all__``::
     ...    pass
 
     >>> print(__all__)
-    ['Bar', 'SEVEN', 'a_bar', 'ONE', 'TWO']
+    []
 
 You can see here that ``foo`` has been removed from the ``__all__``.  It's
 okay if the name doesn't appear in ``__all__`` at all::
@@ -156,25 +189,12 @@ okay if the name doesn't appear in ``__all__`` at all::
     ...     pass
 
     >>> print(__all__)
-    ['Bar', 'SEVEN', 'a_bar', 'ONE', 'TWO']
+    []
 
 In this case, ``Baz`` never appears in ``__all__``.  Like with ``@public``,
-the ``@private`` decorator will add any missing ``__all__``, but if it exists
-in the module, it must be a list.  There is no functional API for ``@private``.
-
-
-Making @public and @private built-ins
-=====================================
-
-It can get rather tedious if you have to add the above import in every module
-where you want to use it.  What if you could put ``public`` into Python's
-builtins_?  Then it would be available in all your code for free::
-
-    >>> from public import install
-    >>> install()
-
-and now you can just use ``@public`` and ``@private`` without having to import
-anything in your other modules.
+the ``@private`` decorator will initialize ``__all__`` if needed, but if it
+exists in the module, it must be a list.  There is no functional API for
+``@private``.
 
 
 Caveats
@@ -209,6 +229,10 @@ others.  This package:
   attribute;
 * can be used to bind names and values into a module's globals;
 * can optionally put ``public`` in builtins.
+
+.. rubric:: Footnotes
+
+.. [#] This is ordering is guaranteed by `PEP 468 <https://peps.python.org/pep-0468/>`_.
 
 
 .. _`issue 26632`: http://bugs.python.org/issue26632

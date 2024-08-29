@@ -1,18 +1,17 @@
 #!/usr/bin/make -f
 
 export PYBUILD_NAME=public
-#export PYBUILD_VERBOSE=1
-#export DH_VERBOSE=1
+export PYBUILD_DISABLE=test
+export PYBUILD_AFTER_TEST=rm -vf {build_dir}/.coverage
 
 %:
 	dh $@ --with sphinxdoc --buildsystem=pybuild
 
-override_dh_installchangelogs:
-	dh_installchangelogs -k docs/NEWS.rst
+#Build sphinx HTML documentation
+override_dh_auto_build:
+	dh_auto_build
+	PYTHONPATH=. http_proxy='http://127.0.0.1:9/' python3 -m sphinx -N -bhtml docs/ debian/html
 
-override_dh_installdocs:
-	python3 setup.py build_sphinx
-	dh_installdocs build/sphinx/html
-
-execute_after_dh_python3:
-	rm -f $(CURDIR)/debian/*/usr/lib/python3/dist-packages/.coverage
+override_dh_link:
+	dh_link
+	find debian/python3-public/ -name 'coverage.xml' -delete

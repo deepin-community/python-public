@@ -1,0 +1,6 @@
+include:
+    - remote: https://gitlab.com/warsaw/gitlab-ci/-/raw/hatchify/common-gitlab-ci.yml
+
+variables:
+    MODULE_NAME: "public"
+    MODULE_PATH: "src/public"

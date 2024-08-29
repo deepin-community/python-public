@@ -4,7 +4,7 @@ from .types import ModuleAware
 
 
 def private(thing: ModuleAware) -> ModuleAware:
-    """Remove names from __all__
+    """Remove names from __all__.
 
     This decorator documents private names and ensures that the names do not
     appear in the module's __all__.
