@@ -4,7 +4,7 @@ import sys
 from contextlib import ExitStack, contextmanager
 from doctest import ELLIPSIS, REPORT_NDIFF, NORMALIZE_WHITESPACE
 from sybil import Sybil
-from sybil.parsers.codeblock import CodeBlockParser
+from sybil.parsers.codeblock import PythonCodeBlockParser
 from sybil.parsers.doctest import DocTestParser
 from tempfile import TemporaryDirectory
 from types import ModuleType
@@ -82,7 +82,11 @@ class DoctestNamespace:
         self._testmod = ModuleType('testmod')
         namespace['__name__'] = self._testmod.__name__
         sys.modules[self._testmod.__name__] = self._testmod
-        self._testmod.__all__ = namespace['__all__'] = []
+        # Used in the doctests to provide a clean __all__.
+        def reset():
+            self._testmod.__all__ = namespace['__all__'] = []
+        reset()
+        namespace['reset'] = reset
 
     def teardown(self, namespace):
         del sys.modules[self._testmod.__name__]
@@ -94,7 +98,7 @@ namespace = DoctestNamespace()
 pytest_collect_file = Sybil(
     parsers=[
         DocTestParser(optionflags=DOCTEST_FLAGS),
-        CodeBlockParser(),
+        PythonCodeBlockParser(),
         ],
     pattern='*.rst',
     setup=namespace.setup,

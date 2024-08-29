@@ -1,0 +1,2 @@
+[bandit]
+exclude: setup_helpers.py conftest.py

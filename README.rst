@@ -10,7 +10,7 @@ in sync so you don't have to.
 Author
 ======
 
-``public`` is Copyright (C) 2016-2021 Barry Warsaw <barry@python.org>
+``public`` is Copyright (C) 2016-2024 Barry Warsaw <barry@python.org>
 
 Licensed under the terms of the Apache License Version 2.0.  See the LICENSE
 file for details.

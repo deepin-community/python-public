@@ -1,6 +1,62 @@
-==============
- @public NEWS
-==============
+==================
+@public change log
+==================
+
+4.1 (2024-03-29)
+================
+* Add support for Python 3.12. (GL#22)
+* Switch to ``hatch``, replacing ``pdm`` and ``tox``. (GL#21)
+
+4.0 (2023-06-05)
+================
+* Drop Python 3.7 support. (GL#16)
+* Remove ``public.install()`` which was used to inject the ``public`` and
+  ``private`` functions into the ``builtins`` namespace.  This isn't very
+  helpful and could be actively harmful.  Explicit is better than
+  implicit. (GL#14)
+* The functional form of ``public()`` now returns the argument *values* in the
+  order they are given.  This allows you to explicitly bind those values to
+  names in the global namespace.  While this is redundant, it does solve some
+  linter problems.  (GL#12)
+* Switch from ``flake8`` and ``isort`` to ``ruff`` for code quality. (GL#32)
+* Bump dependencies.
+
+3.1.2 (2023-05-31)
+==================
+* Switch to ``pdm-backend`` (GL#15)
+* Bump dependencies.
+* More GitLab CI integration improvements.
+
+3.1.1 (2022-09-02)
+==================
+* Improvements to the GitLab CI integration.
+
+3.1 (2022-08-27)
+================
+* Fix a typo in pyproject.toml file.
+* Exclude certain local cache files from the sdist/wheel.
+* Add support for Python 3.11.
+* Updates for pdm and dependencies.
+
+3.0.1 (2022-01-10)
+==================
+* Fix a typo in the README.rst.
+
+3.0 (2022-01-10)
+================
+* Use modern package management by adopting `pdm
+  <https://pdm.fming.dev/>`_ and ``pyproject.toml``, and dropping ``setup.py``
+  and ``setup.cfg``.
+* Build the docs with Python 3.8.
+* Update to version 3.0 of `Sybil <https://sybil.readthedocs.io/en/latest/>`_.
+* Adopt the `Furo <https://pradyunsg.me/furo/quickstart/>`_ documentation theme.
+* Use `importlib.metadata.version()
+  <https://docs.python.org/3/library/importlib.metadata.html#distribution-versions>`_
+  as a better way to get the package version number for the documentation.
+* Drop Python 3.6 support.
+* Update Windows GitLab runner to include Python 3.10.
+* Update copyright years.
+* The ``master`` branch is renamed to ``main``. (GL#11)
 
 2.3 (2021-04-13)
 ================

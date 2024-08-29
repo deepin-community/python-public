@@ -10,11 +10,13 @@
 # serve to show the default.
 
 import sys, os
+from datetime import date
+import importlib.metadata
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
-#sys.path.insert(0, os.path.abspath('.'))
+sys.path.insert(0, os.path.abspath('../src'))
 
 # -- General configuration -----------------------------------------------------
 
@@ -26,12 +28,13 @@ import sys, os
 extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.intersphinx',
-    'sphinx_autodoc_typehints',
     ]
 
 intersphinx_mapping = {
     'python': ('https://docs.python.org/', None),
     }
+
+autodoc_typehints = 'both'
 
 # Add any paths that contain templates here, relative to this directory.
 # templates_path = ['_templates']
@@ -47,14 +50,15 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'public'
-copyright = u'2016-2021 by Barry Warsaw'
+author = 'Barry Warsaw'
+copyright = f'2004-{date.today().year}, {author}'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
 # built documents.
 #
 # The short X.Y version.
-from public import __version__ as version
+version = importlib.metadata.version('atpublic')
 # The full version, including alpha/beta/rc tags.
 release = version
 
@@ -97,7 +101,12 @@ pygments_style = 'sphinx'
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
-html_theme = 'default'
+html_theme = 'furo'
+## html_favicon = '_static/lock-light.svg'
+## html_theme_options = {
+##     'light_logo': 'logo-light.png',
+##     'dark_logo': 'logo-dark.png',
+##     }
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the

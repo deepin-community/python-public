@@ -4,8 +4,6 @@ from importlib import import_module
 
 import pytest
 
-from public import install
-
 
 def test_atpublic_function(example):
     example("""\
@@ -192,10 +190,3 @@ def bar():
 """)
     with pytest.raises(ValueError):
         import_module('example')
-
-
-def test_install():
-    try:
-        install()
-    finally:
-        delattr(builtins, 'public')
